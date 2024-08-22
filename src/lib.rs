@@ -5,6 +5,8 @@ pub mod coston2;
 pub mod flare;
 pub mod songbird;
 
+pub use constants::get_address;
+
 pub enum Chain {
     Coston,
     Coston2,
@@ -148,5 +150,29 @@ mod tests {
             Some(_) => panic!("Abi should not be found"),
             None => (),
         };
+    }
+
+    #[tokio::test]
+    async fn test_get_address() {
+        let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
+            .expect("Failed to create websocket.");
+        let web3s = web3::Web3::new(websocket);
+
+        // by products objects
+        let addr = coston2::products::FlareContractRegistry
+            .get_address(web3s.clone())
+            .await
+            .expect("Something went wrong");
+        assert_eq!(addr, constants::FLARE_CONTRACT_REGISTRY_ADDRESS);
+        let _ = coston2::products::FtsoFeedDecimals
+            .get_address(web3s.clone())
+            .await
+            .expect("Something went wrong");
+
+        // by name
+        let addr = get_address(String::from("FlareContractRegistry"), web3s.clone())
+            .await
+            .expect("Something went wrong");
+        assert_eq!(addr, constants::FLARE_CONTRACT_REGISTRY_ADDRESS);
     }
 }
