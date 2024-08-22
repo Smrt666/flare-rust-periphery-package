@@ -1,12 +1,7 @@
 use std::collections::HashMap;
 use std::sync::LazyLock;
 
-pub struct ProductField<'a> {
-    // Contract
-    pub name: &'a str,
-    pub interface: &'a str,
-    pub abi: &'a [u8],
-}
+use crate::constants::ProductField;
 
 pub struct InterfaceAbis {}
 

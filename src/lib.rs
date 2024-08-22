@@ -1,18 +1,7 @@
-use std::fmt;
+mod constants;
+use constants::UnsupportedChainError;
 
 pub mod coston2;
-
-#[derive(Debug, Clone)]
-pub struct UnsupportedChainError;
-
-impl fmt::Display for UnsupportedChainError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "supported chains are coston, coston2, songbird and flare"
-        )
-    }
-}
 
 pub fn name_to_abi(
     name: String,
