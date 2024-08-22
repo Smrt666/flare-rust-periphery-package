@@ -100,16 +100,6 @@ pub mod products {
         interface: "IPriceSubmitter",
         abi: interface_abis::IPriceSubmitter,
     };
-    pub const FastUpdateIncentiveManager: ProductField<'static> = ProductField {
-        name: "FastUpdateIncentiveManager",
-        interface: "IFastUpdateIncentiveManager",
-        abi: interface_abis::IFastUpdateIncentiveManager,
-    };
-    pub const FtsoFeedIdConverter: ProductField<'static> = ProductField {
-        name: "FtsoFeedIdConverter",
-        interface: "IFtsoFeedIdConverter",
-        abi: interface_abis::IFtsoFeedIdConverter,
-    };
     pub const PChainStakeMirror: ProductField<'static> = ProductField {
         name: "PChainStakeMirror",
         interface: "IPChainStakeMirror",
@@ -125,55 +115,25 @@ pub mod products {
         interface: "IGovernanceSettings",
         abi: interface_abis::IGovernanceSettings,
     };
-    pub const FtsoInflationConfigurations: ProductField<'static> = ProductField {
-        name: "FtsoInflationConfigurations",
-        interface: "IFtsoInflationConfigurations",
-        abi: interface_abis::IFtsoInflationConfigurations,
-    };
     pub const GovernanceVotePower: ProductField<'static> = ProductField {
         name: "GovernanceVotePower",
         interface: "IGovernanceVotePower",
         abi: interface_abis::IGovernanceVotePower,
-    };
-    pub const Submission: ProductField<'static> = ProductField {
-        name: "Submission",
-        interface: "ISubmission",
-        abi: interface_abis::ISubmission,
     };
     pub const FtsoManager: ProductField<'static> = ProductField {
         name: "FtsoManager",
         interface: "IFtsoManager",
         abi: interface_abis::IFtsoManager,
     };
-    pub const EntityManager: ProductField<'static> = ProductField {
-        name: "EntityManager",
-        interface: "IEntityManager",
-        abi: interface_abis::IEntityManager,
-    };
     pub const PollingFtso: ProductField<'static> = ProductField {
         name: "PollingFtso",
         interface: "IPollingFtso",
         abi: interface_abis::IPollingFtso,
     };
-    pub const FlareSystemsCalculator: ProductField<'static> = ProductField {
-        name: "FlareSystemsCalculator",
-        interface: "IFlareSystemsCalculator",
-        abi: interface_abis::IFlareSystemsCalculator,
-    };
-    pub const FtsoFeedDecimals: ProductField<'static> = ProductField {
-        name: "FtsoFeedDecimals",
-        interface: "IFtsoFeedDecimals",
-        abi: interface_abis::IFtsoFeedDecimals,
-    };
     pub const PChainStakeMirrorVerifier: ProductField<'static> = ProductField {
         name: "PChainStakeMirrorVerifier",
         interface: "IPChainStakeMirrorVerifier",
         abi: interface_abis::IPChainStakeMirrorVerifier,
-    };
-    pub const FtsoRewardOffersManager: ProductField<'static> = ProductField {
-        name: "FtsoRewardOffersManager",
-        interface: "IFtsoRewardOffersManager",
-        abi: interface_abis::IFtsoRewardOffersManager,
     };
     pub const ClaimSetupManager: ProductField<'static> = ProductField {
         name: "ClaimSetupManager",
@@ -185,20 +145,10 @@ pub mod products {
         interface: "IDistributionToDelegators",
         abi: interface_abis::IDistributionToDelegators,
     };
-    pub const FastUpdatesConfiguration: ProductField<'static> = ProductField {
-        name: "FastUpdatesConfiguration",
-        interface: "IFastUpdatesConfiguration",
-        abi: interface_abis::IFastUpdatesConfiguration,
-    };
     pub const ValidatorRewardManager: ProductField<'static> = ProductField {
         name: "ValidatorRewardManager",
         interface: "IGenericRewardManager",
         abi: interface_abis::IGenericRewardManager,
-    };
-    pub const FlareSystemsManager: ProductField<'static> = ProductField {
-        name: "FlareSystemsManager",
-        interface: "IFlareSystemsManager",
-        abi: interface_abis::IFlareSystemsManager,
     };
     pub const FlareAssetRegistry: ProductField<'static> = ProductField {
         name: "FlareAssetRegistry",
@@ -210,45 +160,15 @@ pub mod products {
         interface: "IFtsoRewardManager",
         abi: interface_abis::IFtsoRewardManager,
     };
-    pub const VoterRegistry: ProductField<'static> = ProductField {
-        name: "VoterRegistry",
-        interface: "IVoterRegistry",
-        abi: interface_abis::IVoterRegistry,
-    };
-    pub const WNatDelegationFee: ProductField<'static> = ProductField {
-        name: "WNatDelegationFee",
-        interface: "IWNatDelegationFee",
-        abi: interface_abis::IWNatDelegationFee,
-    };
     pub const VoterWhitelister: ProductField<'static> = ProductField {
         name: "VoterWhitelister",
         interface: "IVoterWhitelister",
         abi: interface_abis::IVoterWhitelister,
     };
-    pub const FtsoFeedPublisher: ProductField<'static> = ProductField {
-        name: "FtsoFeedPublisher",
-        interface: "IFtsoFeedPublisher",
-        abi: interface_abis::IFtsoFeedPublisher,
-    };
-    pub const Relay: ProductField<'static> = ProductField {
-        name: "Relay",
-        interface: "IRelay",
-        abi: interface_abis::IRelay,
-    };
-    pub const RewardManager: ProductField<'static> = ProductField {
-        name: "RewardManager",
-        interface: "IRewardManager",
-        abi: interface_abis::IRewardManager,
-    };
     pub const AddressBinder: ProductField<'static> = ProductField {
         name: "AddressBinder",
         interface: "IAddressBinder",
         abi: interface_abis::IAddressBinder,
-    };
-    pub const FastUpdater: ProductField<'static> = ProductField {
-        name: "FastUpdater",
-        interface: "IFastUpdater",
-        abi: interface_abis::IFastUpdater,
     };
     pub const PChainStakeMirrorMultiSigVoting: ProductField<'static> = ProductField {
         name: "PChainStakeMirrorMultiSigVoting",
@@ -276,36 +196,20 @@ pub const NAME_TO_ABI_MAP: LazyLock<HashMap<String, &[u8]>> = LazyLock::new(|| {
     [
         (String::from("WNat"), interface_abis::IWNat),
         (String::from("PriceSubmitter"), interface_abis::IPriceSubmitter),
-        (String::from("FastUpdateIncentiveManager"), interface_abis::IFastUpdateIncentiveManager),
-        (String::from("FtsoFeedIdConverter"), interface_abis::IFtsoFeedIdConverter),
         (String::from("PChainStakeMirror"), interface_abis::IPChainStakeMirror),
         (String::from("FlareContractRegistry"), interface_abis::IFlareContractRegistry),
         (String::from("GovernanceSettings"), interface_abis::IGovernanceSettings),
-        (String::from("FtsoInflationConfigurations"), interface_abis::IFtsoInflationConfigurations),
         (String::from("GovernanceVotePower"), interface_abis::IGovernanceVotePower),
-        (String::from("Submission"), interface_abis::ISubmission),
         (String::from("FtsoManager"), interface_abis::IFtsoManager),
-        (String::from("EntityManager"), interface_abis::IEntityManager),
         (String::from("PollingFtso"), interface_abis::IPollingFtso),
-        (String::from("FlareSystemsCalculator"), interface_abis::IFlareSystemsCalculator),
-        (String::from("FtsoFeedDecimals"), interface_abis::IFtsoFeedDecimals),
         (String::from("PChainStakeMirrorVerifier"), interface_abis::IPChainStakeMirrorVerifier),
-        (String::from("FtsoRewardOffersManager"), interface_abis::IFtsoRewardOffersManager),
         (String::from("ClaimSetupManager"), interface_abis::IClaimSetupManager),
         (String::from("DistributionToDelegators"), interface_abis::IDistributionToDelegators),
-        (String::from("FastUpdatesConfiguration"), interface_abis::IFastUpdatesConfiguration),
         (String::from("ValidatorRewardManager"), interface_abis::IGenericRewardManager),
-        (String::from("FlareSystemsManager"), interface_abis::IFlareSystemsManager),
         (String::from("FlareAssetRegistry"), interface_abis::IFlareAssetRegistry),
         (String::from("FtsoRewardManager"), interface_abis::IFtsoRewardManager),
-        (String::from("VoterRegistry"), interface_abis::IVoterRegistry),
-        (String::from("WNatDelegationFee"), interface_abis::IWNatDelegationFee),
         (String::from("VoterWhitelister"), interface_abis::IVoterWhitelister),
-        (String::from("FtsoFeedPublisher"), interface_abis::IFtsoFeedPublisher),
-        (String::from("Relay"), interface_abis::IRelay),
-        (String::from("RewardManager"), interface_abis::IRewardManager),
         (String::from("AddressBinder"), interface_abis::IAddressBinder),
-        (String::from("FastUpdater"), interface_abis::IFastUpdater),
         (String::from("PChainStakeMirrorMultiSigVoting"), interface_abis::IPChainStakeMirrorMultiSigVoting),
         (String::from("RNat"), interface_abis::IRNat),
         (String::from("ValidatorRegistry"), interface_abis::IValidatorRegistry),

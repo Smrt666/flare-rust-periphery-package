@@ -1,7 +1,10 @@
 mod constants;
 use constants::UnsupportedChainError;
 
+pub mod coston;
 pub mod coston2;
+pub mod flare;
+pub mod songbird;
 
 pub fn name_to_abi(
     name: String,
@@ -29,9 +32,12 @@ mod tests {
         let web3s = web3::Web3::new(websocket);
         let address = hex!("332aa9e37d64caaf70ae5dbe8efc2fc7611934ae").into();
 
-        let contract =
-            Contract::from_json(web3s.eth(), address, coston2::InterfaceAbis::IAddressBinder)
-                .expect("Failed to create a contract instance.");
+        let contract = Contract::from_json(
+            web3s.eth(),
+            address,
+            coston2::interface_abis::IAddressBinder,
+        )
+        .expect("Failed to create a contract instance.");
         let result = contract.query(
             "cAddressToPAddress",
             address,
@@ -50,7 +56,7 @@ mod tests {
         let address = hex!("332aa9e37d64caaf70ae5dbe8efc2fc7611934ae").into();
 
         let contract =
-            Contract::from_json(web3s.eth(), address, coston2::Products::AddressBinder.abi)
+            Contract::from_json(web3s.eth(), address, coston2::products::AddressBinder.abi)
                 .expect("Failed to create a contract instance.");
         let result = contract.query(
             "cAddressToPAddress",
@@ -112,9 +118,9 @@ mod tests {
 
     #[test]
     fn get_product_properties() {
-        let name = coston2::Products::AddressBinder.name;
+        let name = coston2::products::AddressBinder.name;
         assert_eq!(name, "AddressBinder");
-        let interface = coston2::Products::AddressBinder.interface;
+        let interface = coston2::products::AddressBinder.interface;
         assert_eq!(interface, "IAddressBinder");
     }
 }
