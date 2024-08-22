@@ -8,4 +8,4 @@ pub fn interface_to_abi(name: String) -> Option<&'static [u8]> {
     Some(abis::INTERFACE_TO_ABI_MAP.get(&name)?)
 }
 
-pub use abis::{Contract, InterfaceAbis, Products};
+pub use abis::{InterfaceAbis, ProductField, Products};

@@ -1,7 +1,8 @@
 use std::collections::HashMap;
 use std::sync::LazyLock;
 
-pub struct Contract<'a> {
+pub struct ProductField<'a> {
+    // Contract
     pub name: &'a str,
     pub interface: &'a str,
     pub abi: &'a [u8],
@@ -18,7 +19,7 @@ pub struct Products {}
 
 #[allow(non_upper_case_globals)]
 impl Products {
-    pub const AddressBinder: Contract<'static> = Contract {
+    pub const AddressBinder: ProductField<'static> = ProductField {
         name: "AddressBinder",
         interface: "IAddressBinder",
         abi: InterfaceAbis::IAddressBinder,

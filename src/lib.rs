@@ -120,4 +120,12 @@ mod tests {
         );
         let _query_result: FixedBytes = result.await.expect("Failed to retrieve results");
     }
+
+    #[test]
+    fn get_product_properties() {
+        let name = coston2::Products::AddressBinder.name;
+        assert_eq!(name, "AddressBinder");
+        let interface = coston2::Products::AddressBinder.interface;
+        assert_eq!(interface, "IAddressBinder");
+    }
 }
