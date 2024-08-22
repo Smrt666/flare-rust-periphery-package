@@ -1,18 +1,32 @@
-mod constants;
-use constants::UnsupportedChainError;
+pub mod constants;
 
 pub mod coston;
 pub mod coston2;
 pub mod flare;
 pub mod songbird;
 
-pub fn name_to_abi(
-    name: String,
-    chain: &str,
-) -> Result<Option<&'static [u8]>, UnsupportedChainError> {
+pub enum Chain {
+    Coston,
+    Coston2,
+    Flare,
+    Songbird,
+}
+
+pub fn name_to_abi(name: String, chain: Chain) -> Option<&'static [u8]> {
     match chain {
-        "coston2" => Ok(coston2::name_to_abi(name)),
-        _ => Err(UnsupportedChainError),
+        Chain::Coston2 => coston2::name_to_abi(name),
+        Chain::Coston => coston::name_to_abi(name),
+        Chain::Flare => flare::name_to_abi(name),
+        Chain::Songbird => songbird::name_to_abi(name),
+    }
+}
+
+pub fn interface_to_abi(name: String, chain: Chain) -> Option<&'static [u8]> {
+    match chain {
+        Chain::Coston2 => coston2::interface_to_abi(name),
+        Chain::Coston => coston::interface_to_abi(name),
+        Chain::Flare => flare::interface_to_abi(name),
+        Chain::Songbird => songbird::interface_to_abi(name),
     }
 }
 
@@ -122,5 +136,17 @@ mod tests {
         assert_eq!(name, "AddressBinder");
         let interface = coston2::products::AddressBinder.interface;
         assert_eq!(interface, "IAddressBinder");
+    }
+
+    #[test]
+    fn toplevel_name_to_abi() {
+        name_to_abi(String::from("FlareContractRegistry"), Chain::Coston2).expect("Abi not found");
+        name_to_abi(String::from("FlareContractRegistry"), Chain::Coston).expect("Abi not found");
+        name_to_abi(String::from("FlareContractRegistry"), Chain::Flare).expect("Abi not found");
+        name_to_abi(String::from("FlareContractRegistry"), Chain::Songbird).expect("Abi not found");
+        match name_to_abi(String::from("kjdhsfjlhf"), Chain::Coston2) {
+            Some(_) => panic!("Abi should not be found"),
+            None => (),
+        };
     }
 }
