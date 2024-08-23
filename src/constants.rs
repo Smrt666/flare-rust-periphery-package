@@ -62,3 +62,45 @@ impl<'a> ProductField<'a> {
         name_to_address(self.name.to_owned(), provider).await
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use hex_literal::hex;
+    use web3::transports::Http;
+
+    use super::*;
+
+    // Tests only for coston2 - only syntax and logic tests
+    #[tokio::test]
+    async fn get_address() {
+        let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
+            .expect("Failed to create websocket.");
+        let web3s = web3::Web3::new(websocket);
+        let address: Address = name_to_address(String::from("FlareContractRegistry"), &web3s)
+            .await
+            .expect("Could not get address");
+        assert_eq!(address, FLARE_CONTRACT_REGISTRY_ADDRESS);
+    }
+
+    #[tokio::test]
+    async fn get_addresses() {
+        let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
+            .expect("Failed to create websocket.");
+        let web3s = web3::Web3::new(websocket);
+        let addresses: Vec<Address> = names_to_addresses(
+            vec![
+                String::from("FlareContractRegistry"),
+                String::from("fbhsdlbf"),
+            ],
+            &web3s,
+        )
+        .await
+        .expect("Could not get address");
+        assert_eq!(addresses[0], FLARE_CONTRACT_REGISTRY_ADDRESS);
+        assert_eq!(
+            addresses[1],
+            hex!("0000000000000000000000000000000000000000").into()
+        );
+        assert_eq!(addresses.len(), 2);
+    }
+}
