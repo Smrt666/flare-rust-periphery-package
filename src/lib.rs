@@ -69,7 +69,10 @@ mod tests {
         let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
             .expect("Failed to create websocket.");
         let web3s = web3::Web3::new(websocket);
-        let address = hex!("332aa9e37d64caaf70ae5dbe8efc2fc7611934ae").into();
+        let address = coston2::products::AddressBinder
+            .get_address(&web3s)
+            .await
+            .expect("Could not get address");
 
         let contract =
             Contract::from_json(web3s.eth(), address, coston2::products::AddressBinder.abi)
@@ -89,7 +92,9 @@ mod tests {
         let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
             .expect("Failed to create websocket.");
         let web3s = web3::Web3::new(websocket);
-        let address = hex!("332aa9e37d64caaf70ae5dbe8efc2fc7611934ae").into();
+        let address = name_to_address(String::from("AddressBinder"), &web3s)
+            .await
+            .expect("Could not get address");
 
         let contract = Contract::from_json(
             web3s.eth(),
@@ -113,7 +118,9 @@ mod tests {
         let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
             .expect("Failed to create websocket.");
         let web3s = web3::Web3::new(websocket);
-        let address = hex!("332aa9e37d64caaf70ae5dbe8efc2fc7611934ae").into();
+        let address = names_to_addresses(vec![String::from("AddressBinder")], &web3s)
+            .await
+            .expect("Could not get address")[0];
 
         let contract = Contract::from_json(
             web3s.eth(),
