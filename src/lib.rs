@@ -5,7 +5,7 @@ pub mod coston2;
 pub mod flare;
 pub mod songbird;
 
-pub use constants::get_address;
+pub use constants::{name_to_address, names_to_addresses};
 
 pub enum Chain {
     Coston,
@@ -160,19 +160,42 @@ mod tests {
 
         // by products objects
         let addr = coston2::products::FlareContractRegistry
-            .get_address(web3s.clone())
+            .get_address(&web3s)
             .await
             .expect("Something went wrong");
         assert_eq!(addr, constants::FLARE_CONTRACT_REGISTRY_ADDRESS);
         let _ = coston2::products::FtsoFeedDecimals
-            .get_address(web3s.clone())
+            .get_address(&web3s)
             .await
             .expect("Something went wrong");
 
         // by name
-        let addr = get_address(String::from("FlareContractRegistry"), web3s.clone())
+        let addr = name_to_address(String::from("FlareContractRegistry"), &web3s)
             .await
             .expect("Something went wrong");
         assert_eq!(addr, constants::FLARE_CONTRACT_REGISTRY_ADDRESS);
+    }
+
+    #[tokio::test]
+    async fn test_get_addresses() {
+        let websocket = Http::new("https://coston2-api.flare.network/ext/C/rpc")
+            .expect("Failed to create websocket.");
+        let web3s = web3::Web3::new(websocket);
+
+        let addrs = names_to_addresses(vec![String::from("FlareContractRegistry")], &web3s)
+            .await
+            .expect("Something went wrong");
+        assert_eq!(addrs, vec![constants::FLARE_CONTRACT_REGISTRY_ADDRESS]);
+
+        let addrs = names_to_addresses(
+            vec![
+                String::from("FlareContractRegistry"),
+                String::from("sdkafnkljdfhl"),
+            ],
+            &web3s,
+        )
+        .await
+        .expect("Something went wrong");
+        assert_eq!(addrs.len(), 2);
     }
 }
