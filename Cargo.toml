@@ -1,5 +1,5 @@
 [package]
-name = "test_flare_rust_periphery_package"
+name = "flare_rust_periphery_package"
 version = "0.1.0"
 edition = "2021"
 readme = "README.md"
