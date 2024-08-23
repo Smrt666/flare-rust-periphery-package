@@ -6,7 +6,6 @@ readme = "README.md"
 license = "MIT"
 repository = "https://github.com/Smrt666/flare-rust-periphery-package"
 description = "Simple access to abis for flare periphery contracts."
-documentation = "TODO"
 exclude = ["tests"]
 
 [dependencies]

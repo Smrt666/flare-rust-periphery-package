@@ -50,6 +50,7 @@ pub async fn names_to_addresses(
         .map_err(|e| e.to_string())
 }
 
+/// Type of `product` constants for all chains.
 pub struct ProductField<'a> {
     // Contract
     pub name: &'a str,
